@@ -82,7 +82,7 @@ const validateGender = (gender: string): boolean | void => {
 
 const usersContext = createContext<UsersProviderData>({} as UsersProviderData);
 
-export const usersProvider = ({ children }: UsersProviderProps) => {
+export const UsersProvider = ({ children }: UsersProviderProps) => {
 	const { currentToken, currentUser } = useAuth();
 
 	const headers = {
@@ -192,4 +192,4 @@ export const usersProvider = ({ children }: UsersProviderProps) => {
 	return <usersContext.Provider value={{ getAllUsers, getUserById, updateUserProfile, deleteUserProfile, follow, unfollow, chasers, chasing }}>{children}</usersContext.Provider>;
 };
 
-export const useusers = () => useContext(usersContext);
+export const useUsers = () => useContext(usersContext);
