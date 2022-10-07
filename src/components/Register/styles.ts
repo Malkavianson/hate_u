@@ -68,6 +68,11 @@ export const RegisterSection = styled.section`
           position: absolute;
           width: 16px;
           cursor: pointer;
+          transition: 0.3s ease;
+
+          :hover {
+            transform: scale(1.2);
+          }
         }
       }
     }

@@ -58,8 +58,13 @@ export const StyledHeader = styled.header`
   }
 
   img {
-    width: 40px;
+    width: 24px;
     cursor: pointer;
+    transition: 0.3s ease;
+
+    :hover {
+      transform: scale(1.1);
+    }
   }
 `;
 

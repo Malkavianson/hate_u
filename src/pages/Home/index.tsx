@@ -6,16 +6,18 @@ import {
   StyledPosts,
 } from "./styles";
 import { useNavigate } from "react-router-dom";
-import imgMenu from "../../assets/menu.png";
+import imgLogout from "../../assets/logout.png";
 import { useState } from "react";
 import Profile from "../../components/Profile";
 import Chaser from "../../components/Chaser";
 import Chasing from "../../components/Chasing";
+import { useAuth } from "../../contexts/auth";
 
 declare type TypedSection = "profile" | "chaser" | "chasing";
 
 const Home = (): JSX.Element => {
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const [section, setSection] = useState<TypedSection>("profile");
 
@@ -39,7 +41,7 @@ const Home = (): JSX.Element => {
               placeholder="Pesquisar pessoas no hate u."
             />
 
-            <img src={imgMenu} alt="menu" />
+            <img onClick={() => logout()} src={imgLogout} alt="menu" />
           </StyledHeader>
 
           <StyledNav active={section}>
