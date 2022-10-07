@@ -13,6 +13,8 @@ interface AuthProviderProps {
 }
 
 interface AuthProviderData {
+  currentToken: string | null;
+  currentUser: any | null;
   logged: boolean;
   login: (params: LoginParams) => void;
   logout: () => void;
@@ -26,6 +28,8 @@ interface LoginParams {
 const AuthContext = createContext<AuthProviderData>({} as AuthProviderData);
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
+  const [currentToken, setCurrentToken] = useState<string | null>(null);
+  const [currentUser, setCurrentUser] = useState<any | null>({});
   const [logged, setLogged] = useState<boolean>(false);
   const navigate = useNavigate();
 
@@ -33,18 +37,20 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(user));
     setLogged(true);
-    navigate("/");
+    navigate("/home");
   };
 
   const logout = () => {
     localStorage.clear();
     setLogged(false);
-    navigate("/login");
+    navigate("/");
   };
 
   const checkTokenExpiration = () => {
     const user = JSON.parse(localStorage.getItem("user") || "");
     const token = localStorage.getItem("token");
+
+    setCurrentToken(token);
 
     const headers = {
       headers: {
@@ -54,9 +60,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
     api
       .get(`/user/${user.id}`, headers)
-      .then(() => {
+      .then((res) => {
+        setCurrentUser(res.data);
         setLogged(true);
-        navigate("/");
+        navigate("/home");
       })
       .catch(() => {
         logout();
@@ -70,7 +77,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ logged, login, logout }}>
+    <AuthContext.Provider
+      value={{ currentToken, currentUser, logged, login, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );

@@ -17,7 +17,11 @@ const Auth = (): JSX.Element => {
         )}
         <p>
           Todos os direitos reservados à{" "}
-          <a href="https://www.github.com/santos95mat" target={"_blank"}>
+          <a
+            href="https://www.github.com/santos95mat"
+            target={"_blank"}
+            rel="noreferrer"
+          >
             Matheus Rodrigues Santos
           </a>
         </p>
