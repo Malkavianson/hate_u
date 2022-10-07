@@ -27,7 +27,7 @@ const Register = ({ setRegister }: any) => {
 		};
 
 		api.post("/user", data)
-			.then(res => {
+			.then(() => {
 				setRegister(false);
 			})
 			.catch(e => {
@@ -61,7 +61,7 @@ const Register = ({ setRegister }: any) => {
 						<select
 							onChange={e => {
 								setGender(e.target.value);
-								console.log(gender);
+								// console.log(gender);
 							}}
 							name="gender"
 							id="gender"

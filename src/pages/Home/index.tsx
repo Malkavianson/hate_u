@@ -1,17 +1,29 @@
 import { StyledBody, StyledHeader, StyledMenu, StyledNav, StyledPosts } from "./styles";
-import { useNavigate } from "react-router-dom";
 import imgLogout from "../../assets/logout.png";
-import { useState } from "react";
-import Profile from "../../components/Profile";
-import Chaser from "../../components/Chaser";
+// import { useUsers } from "../../contexts/users";
 import Chasing from "../../components/Chasing";
+import Profile from "../../components/Profile";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/auth";
+import Chaser from "../../components/Chaser";
+import { useState } from "react";
 
 declare type TypedSection = "profile" | "chaser" | "chasing";
 
 const Home = (): JSX.Element => {
 	const navigate = useNavigate();
 	const { logout } = useAuth();
+
+	// const { getAllUsers, getUserById, updateUserProfile, deleteUserProfile, follow, unfollow, chasers, chasing } = useUsers();
+
+	// getAllUsers().then(res => console.log(res));
+	// console.log();
+	// getUserById("90f19469-ab03-4023-b639-5e78db7e1929").then(res => console.log(res));
+	// console.log();
+	// console.log(chasers());
+	// console.log();
+	// console.log(chasing());
+	// console.log();
 
 	const [section, setSection] = useState<TypedSection>("profile");
 

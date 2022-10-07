@@ -4,7 +4,7 @@ import { StyledProfile } from "./styles";
 const Profile = () => {
 	const { currentUser } = useAuth();
 
-	console.log(currentUser);
+	// console.log(currentUser);
 
 	return (
 		<StyledProfile>

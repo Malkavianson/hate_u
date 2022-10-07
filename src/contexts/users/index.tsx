@@ -41,7 +41,7 @@ interface UpdateUserDto {
 interface UsersProviderData {
 	getAllUsers: () => Promise<UserDefault[] | undefined>;
 	getUserById: (id: string) => Promise<UserDefault>;
-	updateUserProfile: (id: string, { name, email, password, gender }: UpdateUserDto) => Promise<UserDefault | undefined> | undefined;
+	updateUserProfile: ({ name, email, password, gender }: UpdateUserDto) => Promise<UserDefault | undefined> | undefined;
 	deleteUserProfile: () => Promise<UserDefault>;
 	follow: (chasing: string) => Promise<UserDefault>;
 	unfollow: (chasingId: string) => Promise<UserDefault>;
@@ -96,7 +96,7 @@ export const UsersProvider = ({ children }: UsersProviderProps) => {
 		if (res.status === 200) {
 			return res.data;
 		} else {
-			console.log("Erro em src > contexts > users > linha 79");
+			console.log("Erro em src > contexts > users > linha 99");
 			console.log(res);
 		}
 	};
@@ -106,12 +106,12 @@ export const UsersProvider = ({ children }: UsersProviderProps) => {
 		if (res.status === 200) {
 			return res.data;
 		} else {
-			console.log("Erro em src > contexts > users > linha 95");
+			console.log("Erro em src > contexts > users > linha 109");
 			console.log(res);
 		}
 	};
 
-	const updateUserProfile = (id: string, { name, email, password, gender }: UpdateUserDto): Promise<UserDefault | undefined> | undefined => {
+	const updateUserProfile = ({ name, email, password, gender }: UpdateUserDto): Promise<UserDefault | undefined> | undefined => {
 		const data: UpdateUserDto = {};
 		if (name) {
 			if (validateName(name)) {
@@ -140,7 +140,7 @@ export const UsersProvider = ({ children }: UsersProviderProps) => {
 					if (res.status === 200) {
 						return res.data;
 					} else {
-						console.log("Erro em src > contexts > users > linha 149");
+						console.log("Erro em src > contexts > users > linha 143");
 						console.log(res);
 						return undefined;
 					}
@@ -154,7 +154,7 @@ export const UsersProvider = ({ children }: UsersProviderProps) => {
 		if (res.status === 200) {
 			return res.data;
 		} else {
-			console.log("Erro em src > contexts > users > linha 168");
+			console.log("Erro em src > contexts > users > linha 157");
 			console.log(res);
 		}
 	};
@@ -168,7 +168,7 @@ export const UsersProvider = ({ children }: UsersProviderProps) => {
 		if (res.status === 200) {
 			return res.data;
 		} else {
-			console.log("Erro em src > contexts > users > linha 168");
+			console.log("Erro em src > contexts > users > linha 171");
 			console.log(res);
 		}
 	};
@@ -180,7 +180,7 @@ export const UsersProvider = ({ children }: UsersProviderProps) => {
 		if (res.status === 200) {
 			return res.data;
 		} else {
-			console.log("Erro em src > contexts > users > linha 168");
+			console.log("Erro em src > contexts > users > linha 183");
 			console.log(res);
 		}
 	};
