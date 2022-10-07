@@ -2,24 +2,27 @@ import { useState } from "react";
 import { api } from "../../services";
 import { StyledButton } from "../../styles";
 import { RegisterSection } from "./styles";
+import showPasswordImg from "../../assets/mostrar-senha.png";
 
 interface RegisterData {
   name: string;
   email: string;
-  phone?: string;
+  gender: string;
   password: string;
 }
 
 const Register = ({ setRegister }: any) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [gender, setGender] = useState("masculino");
   const [password, setPassword] = useState("");
+  const [type, setType] = useState("password");
 
-  const handleRegister = ({ name, email, password }: RegisterData) => {
+  const handleRegister = ({ name, email, gender, password }: RegisterData) => {
     const data: RegisterData = {
       name: name,
       email: email,
-      phone: "(xx) xxxx-xxxx",
+      gender: gender,
       password: password,
     };
 
@@ -53,18 +56,38 @@ const Register = ({ setRegister }: any) => {
               placeholder="E-mail"
               onChange={(e) => setEmail(e.target.value)}
             />
-            <input
-              type="password"
-              name="rPassword"
-              id="rPassword"
-              placeholder="Senha"
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <select
+              onChange={(e) => {
+                setGender(e.target.value);
+                console.log(gender);
+              }}
+              name="gender"
+              id="gender"
+            >
+              <option value="masculino">Masculino</option>
+              <option value="feminino">Feminino</option>
+            </select>
+            <div>
+              <input
+                type={type}
+                name="rPassword"
+                id="rPassword"
+                placeholder="Senha"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <img
+                onClick={() =>
+                  type === "text" ? setType("password") : setType("text")
+                }
+                src={showPasswordImg}
+                alt="showPassword"
+              />
+            </div>
           </form>
           <div>
             <StyledButton
               onClick={(e) => {
-                handleRegister({ name, email, password });
+                handleRegister({ name, email, password, gender });
                 e.stopPropagation();
                 e.preventDefault();
               }}

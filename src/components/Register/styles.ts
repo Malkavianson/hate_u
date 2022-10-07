@@ -45,6 +45,31 @@ export const RegisterSection = styled.section`
           color: black;
         }
       }
+
+      select {
+        border-radius: 5px;
+        padding: 8px;
+        width: 98%;
+        border: none;
+        outline: none;
+        background-color: rgba(255, 255, 255, 0.3);
+        font-size: 16px;
+
+        ::placeholder {
+          color: black;
+        }
+      }
+
+      div {
+        position: relative;
+
+        img {
+          right: 16px;
+          position: absolute;
+          width: 16px;
+          cursor: pointer;
+        }
+      }
     }
 
     a {
