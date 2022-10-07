@@ -37,6 +37,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(user));
     setLogged(true);
+    setCurrentUser(user);
     navigate("/home");
   };
 
